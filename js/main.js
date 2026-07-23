@@ -32,6 +32,22 @@
     mainNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', closeNav);
     });
+
+    // Menü mit Escape schliessen
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mainNav.classList.contains('open')) {
+        closeNav();
+        navToggle.focus();
+      }
+    });
+
+    // Menü bei Klick ausserhalb schliessen
+    document.addEventListener('click', function (e) {
+      if (mainNav.classList.contains('open') &&
+          !mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+        closeNav();
+      }
+    });
   }
 
   /* ---- Header-Schatten & Back-to-top beim Scrollen ---- */
@@ -63,5 +79,31 @@
   } else {
     // Fallback: alles sofort anzeigen
     revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ---- Scrollspy: aktiven Menüpunkt hervorheben ---- */
+  var navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.main-nav a[href^="#"]:not(.nav-cta)')
+  );
+  var linkById = {};
+  var spySections = [];
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute('href').slice(1);
+    var section = document.getElementById(id);
+    if (section) { linkById[id] = link; spySections.push(section); }
+  });
+
+  if ('IntersectionObserver' in window && spySections.length) {
+    function setActive(id) {
+      navLinks.forEach(function (l) { l.classList.remove('active'); });
+      if (linkById[id]) linkById[id].classList.add('active');
+    }
+    var spyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    spySections.forEach(function (s) { spyObserver.observe(s); });
   }
 })();
