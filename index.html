@@ -24,7 +24,13 @@
 <body>
 
   <!-- ===== VORSCHAU-MARKIERUNG (nur Entwurf, vor Livegang entfernen) ===== -->
-  <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#14284d;color:#fff;font:600 13px/1.4 Inter,Arial,sans-serif;text-align:center;padding:8px 14px;letter-spacing:.02em;">
+  <style>
+    body { padding-bottom: 46px; }           /* Platz fürs fixe Vorschau-Banner */
+    .site-footer { margin-bottom: 0; }
+    .back-to-top { bottom: 60px !important; } /* Button über das Banner heben */
+    @media (max-width: 480px) { body { padding-bottom: 54px; } }
+  </style>
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#14284d;color:#fff;font:600 12px/1.4 Inter,Arial,sans-serif;text-align:center;padding:8px 14px;letter-spacing:.02em;">
     Vorschau &middot; DONI Hauswart &amp; Reinigung &middot; Entwurf von Itin&nbsp;TechSolutions &ndash; bitte nicht ver&ouml;ffentlichen
   </div>
   <div aria-hidden="true" style="position:fixed;inset:0;z-index:9998;pointer-events:none;background-image:repeating-linear-gradient(-30deg,transparent 0 180px,rgba(20,40,77,.05) 180px 420px);"></div>

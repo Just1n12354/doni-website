@@ -50,7 +50,7 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-h1, h2, h3 { font-family: var(--font-head); color: var(--ink); line-height: 1.15; font-weight: 700; }
+h1, h2, h3 { font-family: var(--font-head); color: var(--ink); line-height: 1.15; font-weight: 700; overflow-wrap: break-word; }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
@@ -363,6 +363,8 @@ h1, h2, h3 { font-family: var(--font-head); color: var(--ink); line-height: 1.15
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+
+/* ---- Tablet quer / kleine Laptops ---- */
 @media (max-width: 980px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .advantages-grid { grid-template-columns: repeat(3, 1fr); }
@@ -371,32 +373,88 @@ h1, h2, h3 { font-family: var(--font-head); color: var(--ink); line-height: 1.15
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
+  .cta-band-inner { gap: 1.2rem 1.5rem; }
 }
 
+/* ---- Tablet hoch ---- */
+@media (max-width: 860px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+}
+
+/* ---- Smartphone (quer) & darunter ---- */
 @media (max-width: 720px) {
+  html { scroll-padding-top: 84px; }
+
   .header-inner { height: 72px; }
-  .logo-img { height: 52px; }
+  .logo-img { height: 50px; }
   .nav-toggle { display: flex; }
   .main-nav {
     position: fixed; top: 72px; left: 0; right: 0;
     background: #fff; flex-direction: column; align-items: stretch; gap: 0;
     padding: .5rem 24px 1.5rem; box-shadow: var(--shadow-lg);
-    transform: translateY(-120%); transition: transform .35s ease; border-top: 1px solid var(--line);
+    transform: translateY(-130%); transition: transform .35s ease; border-top: 1px solid var(--line);
+    max-height: calc(100dvh - 72px); overflow-y: auto;
   }
   .main-nav.open { transform: translateY(0); }
-  .main-nav a { padding: .9rem 0; border-bottom: 1px solid var(--line); }
+  .main-nav a { padding: .95rem 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
   .main-nav .nav-cta { text-align: center; margin-top: .8rem; border-bottom: 0; }
 
-  .section { padding: 68px 0; }
-  .hero { padding: 128px 0 90px; }
+  .section { padding: 64px 0; }
+  .section-head { margin-bottom: 2.4rem; }
+  .hero { padding: 124px 0 84px; }
+
   .services-grid { grid-template-columns: 1fr; }
   .advantages-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); }
-  .values-list { grid-template-columns: 1fr; }
+  .values-list { grid-template-columns: 1fr 1fr; }
   .field-row { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  .hero-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn { width: 100%; }
+
+  /* Kennzahlen sauber als 2×2 statt gequetscht */
+  .stats-band { padding: 2.2rem 0; }
+
+  /* Vertrauens-Leiste zentriert stapeln */
+  .trust-inner { justify-content: center; text-align: center; gap: .7rem 1.3rem; }
+  .trust-rating { justify-content: center; }
+  .trust-points { justify-content: center; }
+
+  /* CTA-Band mittig, Button über volle Breite */
+  .cta-band-inner { flex-direction: column; text-align: center; }
+  .cta-band-inner .btn { width: 100%; }
+
+  /* Formular kompakter */
+  .contact-form { padding: 1.9rem 1.4rem; }
+
+  /* Footer-Zeile zentriert */
+  .footer-bottom .container { justify-content: center; text-align: center; }
+}
+
+/* ---- Smartphone (hoch) ---- */
+@media (max-width: 480px) {
+  .container { padding: 0 18px; }
+
+  .section { padding: 54px 0; }
+  .hero { padding: 112px 0 70px; }
+  .hero h1 { font-size: clamp(1.85rem, 8vw, 2.4rem); }
+
+  .advantages-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .gallery { grid-template-columns: 1fr 1fr; gap: .8rem; }
+  .values-list { grid-template-columns: 1fr; }
+
+  .service-card { padding: 1.7rem 1.4rem; }
+  .review { padding: 1.7rem 1.4rem; }
+  .values-box { padding: 1.8rem 1.4rem; }
+  .contact-form { padding: 1.6rem 1.2rem; }
+
+  .btn { padding: .9rem 1.4rem; }
+  .trust-points { gap: .4rem 1.1rem; }
+  .trust-points li { font-size: .9rem; }
+  .footer-inner { grid-template-columns: 1fr; }
+
+  .back-to-top { bottom: 18px; right: 18px; width: 44px; height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
