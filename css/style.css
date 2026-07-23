@@ -218,7 +218,7 @@ h1, h2, h3 { font-family: var(--font-head); color: var(--ink); line-height: 1.15
   display: inline-flex; align-items: center; gap: .4rem;
   font-family: var(--font-head); font-weight: 600; font-size: .95rem; color: var(--green-600);
 }
-.service-cta-ico { width: 17px; height: 17px; transition: transform .25s ease; }
+.service-cta-ico { width: 14px; height: 14px; flex-shrink: 0; transition: transform .25s ease; }
 .service-card:hover .service-cta-ico { transform: translateX(4px); }
 .service-cta::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
 .service-cta:focus-visible { outline: none; }
